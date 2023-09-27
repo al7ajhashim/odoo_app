@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="import_bills_invoices.menu_finance_import" model="ir.ui.menu">
+        <field name="parent_id" ref="account_accountant.menu_accounting"/>
+    </record>
+</odoo>
+ 

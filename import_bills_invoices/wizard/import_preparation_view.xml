@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="import_bill_invoice_view" model="ir.ui.view">
+            <field name="name">import_bill_invoice.view</field>
+            <field name="model">prepare.import</field>
+            <field name="arch" type="xml">
+                <form string="Import Bills and Invoices">
+                    <group>
+                        <group>
+                            <field name="file_to_upload"/>
+                            <field name="upload_type" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Import" name="import_vendor_bill" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                        <div class="pull-right" style="position:relative; left:495px; top:2px;">
+                            <strong>Download Sample : </strong>
+                            <a role="button" attrs="{'invisible': [('upload_type', '=', 'invoice')]}" href="/import_bills_invoices/static/sample/vendor_bill.xls"
+                               class="btn-primary"
+                               style="font-size: 12px; line-height: 1.5; border-radius: 3px; padding: 8px 10px; color: #ffffff;">
+                                <i class="fa fa-download"/>
+                                Vendor Bills Sample
+                            </a>
+                            <a role="button" attrs="{'invisible': [('upload_type', '=', 'bill')]}" href="/import_bills_invoices/static/sample/customer_invoice.xls"
+                               class="btn-primary"
+                               style="font-size: 12px; line-height: 1.5; border-radius: 3px; padding: 8px 10px; color: #ffffff;">
+                                <i class="fa fa-download"/>
+                                Customer Invoices Sample
+                            </a>
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_bill_invoice" model="ir.actions.act_window">
+            <field name="name">Import Preparation</field>
+            <field name="res_model">prepare.import</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+<!--        <record id="account.menu_finance_receivables" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_accounting"/>
+        </record>
+        -->
+
+        <menuitem name="Import Option"
+                  id="menu_finance_import"
+                  sequence="3"
+                  parent="account.menu_finance"/>
+
+        <menuitem action="action_import_bill_invoice"
+                  id="menu_import_bill_invoice"
+                  parent="menu_finance_import"/>
+    </data>
+</odoo>
+ 
