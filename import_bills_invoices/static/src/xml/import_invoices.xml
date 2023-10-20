@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+   <t t-name="importInvoicesAccountListView.buttons" t-inherit="web.ListView.Buttons" owl="1">
+        <xpath expr="//button[hasclass('o_list_button_add')]" position="after">
+            <button type="button" class="btn btn-secondary" t-on-click="onImportInvoiceClick">
+                Import Invoices
+            </button>
+        </xpath>
+    </t>
+</templates>

@@ -11,9 +11,16 @@
     'depends': ['account', 'analytic'],
     'data': [
             'security/ir.model.access.csv',
+            'views/account_move.xml',
             'views/res_config_settings_view.xml',
             'wizard/import_preparation_view.xml'
         ],
+    'assets': {
+                'web.assets_backend': [
+                    'import_bills_invoices/static/src/**/*.js',
+                    'import_bills_invoices/static/src/**/*.xml',
+                ],
+        },
     'installable': True,
     'application': True,
     'auto_install': False,

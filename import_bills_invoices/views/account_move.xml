@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_in_invoice_bill_tree" model="ir.ui.view">
+        <field name="name">account.move.inh.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_bill_tree"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">bills_from_list</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_out_invoice_bill_tree" model="ir.ui.view">
+        <field name="name">account.move.out.inh.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">invoices_from_list</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
