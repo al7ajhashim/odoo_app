@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Petty Cash Management111',
+    'name': 'Petty Cash Management',
     'version': '16.0.0.1',
     'sequence': 7,
     'category': 'Accounting',
