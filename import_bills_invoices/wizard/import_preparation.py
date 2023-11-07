@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 
 import time
 import json
@@ -30,6 +29,7 @@ except ImportError:
 
 class ImportPreparation(models.TransientModel):
     _name = "prepare.import"
+    _description = "Import Preparation"
 
     file_to_upload = fields.Binary('File')
     upload_type = fields.Selection([('bill', 'Vendor Bill'), ('invoice', 'Customer Invoice')], string="Upload For", default='bill')
