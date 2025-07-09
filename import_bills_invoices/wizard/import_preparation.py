@@ -277,3 +277,7 @@ class ImportPreparation(models.TransientModel):
                 line_data = self._prepare_bill_lines(val)
                 lines.append((0, 0, line_data))
             move.write({'invoice_line_ids': lines})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
