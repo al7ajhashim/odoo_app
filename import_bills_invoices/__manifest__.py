@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Import Bills and Invoices',
-    'version': '16.0.0.1',
+    'version': '16.0.0.2',
     'sequence': 7,
     'category': 'Accounting',
     'summary': 'Import vendor bills and customer invoices from exel file',
