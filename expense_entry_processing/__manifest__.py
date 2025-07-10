@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name': 'Expense Entry Processing',
-    'version': '16.0.1.0',
+    'version': '16.0.1.1',
     'summary': 'Expense Entry Zero Debit/Credit line processing',
     'author': "Al-haj Hashim",
     'sequence': 15,
@@ -15,6 +15,8 @@
         'hr_expense',
     ],
     'data': [],
+    'currency': '300',
+    'currency': 'USD',
     'installable': True,
     'application': False,
     'auto_install': False,
