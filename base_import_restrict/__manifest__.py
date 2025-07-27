@@ -12,5 +12,7 @@
     "installable": True,
     "auto_install": False,
     "license": "LGPL-3",
+    "price": 50,
+    "currency": "USD",
     "images": ['static/description/logo.png']
 }
