@@ -15,7 +15,7 @@
         'hr_expense',
     ],
     'data': [],
-    'currency': '300',
+    'price': 10,
     'currency': 'USD',
     'installable': True,
     'application': False,
