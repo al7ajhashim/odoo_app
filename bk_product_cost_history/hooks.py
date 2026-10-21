@@ -37,7 +37,7 @@ def post_init_hook(env):
     cr = env.cr
     digits = env['decimal.precision'].precision_get('Product Price')
 
-    # The invoice line cost comes from a customization (masheal_customization): without it,
+    # The invoice line cost comes from a customization (a product_cost field): without it,
     # there is no history to take and only the opening cost is recorded.
     if column_exists(cr, 'account_move_line', 'product_cost'):
         cr.execute(HISTORY_QUERY, {'uid': SUPERUSER_ID, 'origin': ORIGIN, 'digits': digits})
