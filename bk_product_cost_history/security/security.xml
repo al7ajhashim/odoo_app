@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="res.groups" id="group_view_product_cost_history">
+            <field name="name">Inventory: View Product Cost History</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record model="ir.rule" id="product_cost_history_company_rule">
+            <field name="name">Product Cost History: allowed companies</field>
+            <field name="model_id" ref="model_bk_product_cost_history"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>
