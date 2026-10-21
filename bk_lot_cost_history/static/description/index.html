@@ -3,7 +3,7 @@
         <h2 class="oe_slogan" style="color:#714B67;">Lot Cost History</h2>
         <h3 class="oe_slogan">Know when, why and by whom the cost of each lot or serial number changed</h3>
         <div class="oe_span12" style="text-align:center;">
-            <img class="oe_picture oe_screenshot" src="screenshot_lot_tab.png" alt="Cost History tab of a serial number"/>
+            <img class="oe_picture oe_screenshot" src="screenshot_lot_tab.png" alt="Cost History tab of a lot"/>
         </div>
     </div>
 </section>
@@ -53,7 +53,7 @@
                 <li><b>Opening cost</b> recorded on install for every lot that has a cost, even without stock.</li>
                 <li><b>Fast</b>: about two database queries per serial number on a receipt
                     (a receipt of 1,000 serial numbers takes less than one second more).</li>
-                <li><b>Read-only</b> for everybody, <b>multi-company</b> safe.</li>
+                <li><b>Read-only</b> for everybody, <b>multi-company</b> safe, <b>Arabic</b> translation included.</li>
                 <li><b>Tested</b>: automated tests for every source, access right and unit of measure.</li>
             </ul>
         </div>
@@ -62,25 +62,176 @@
 
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan">From the product to its lots</h2>
+        <h2 class="oe_slogan">Requirements</h2>
         <div class="oe_span12">
-            <p>
-                A <b>Lot Costs</b> button on a product valued by lot opens the cost history of all its lots.
-                The <b>Inventory &rsaquo; Reporting &rsaquo; Lot Cost History</b> menu lists all the
-                changes, with filters and groupings by product, lot, source, company and date.
-            </p>
-            <img class="oe_picture oe_screenshot" src="screenshot_product_button.png" alt="Lot Costs button"/>
-            <img class="oe_picture oe_screenshot oe_mt32" src="screenshot_report.png" alt="Lot Cost History report"/>
-            <img class="oe_picture oe_screenshot oe_mt32" src="screenshot_line_details.png" alt="Line details"/>
+            <ul>
+                <li><b>Odoo 18.0</b>, Community or Enterprise, with the <b>Inventory</b> app.</li>
+                <li>The free module <b>Product Cost History</b> (<code>bk_product_cost_history</code>): it is
+                    installed automatically with this module.</li>
+                <li>Products <b>tracked by lots or serial numbers</b> and <b>valued by lot/serial number</b>
+                    (a standard Odoo 18 option, see the configuration below). Products that are not valued by
+                    lot are not logged by this module (their product cost is logged by Product Cost History).</li>
+            </ul>
+            <p><b>Costing methods</b></p>
+            <ul>
+                <li><b>Average Cost (AVCO)</b>: fully supported and tested, every source of the table below is recognised.</li>
+                <li><b>First In First Out (FIFO)</b>: every change of a lot cost is logged; the sources are those of
+                    the table below.</li>
+                <li><b>Standard Price</b>: the cost of a lot only changes when it is updated by a user, an import
+                    or a revaluation, and these changes are logged.</li>
+            </ul>
         </div>
     </div>
 </section>
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Installation and configuration</h2>
+        <div class="oe_span12">
+            <h4>1. Install the module</h4>
+            <ol>
+                <li>Copy the folders <code>bk_lot_cost_history</code> and <code>bk_product_cost_history</code> to
+                    your addons path and restart the Odoo server (Odoo.sh: add them to your repository).</li>
+                <li>Activate the <b>developer mode</b> (see step 4), go to <b>Apps</b>, click
+                    <b>Update Apps List</b>, search <b>Lot Cost History</b> and click <b>Activate</b>.</li>
+                <li>On install, the <b>opening cost</b> of every lot that has a cost is recorded at once, in every company.</li>
+            </ol>
+
+            <h4 class="oe_mt32">2. Enable the lots and serial numbers (if not done yet)</h4>
+            <ol>
+                <li><b>Inventory &rsaquo; Configuration &rsaquo; Settings</b>, section <b>Traceability</b>.</li>
+                <li>Tick <b>Lots &amp; Serial Numbers</b> and click <b>Save</b>.</li>
+            </ol>
+
+            <h4 class="oe_mt32">3. Value the products by lot / serial number</h4>
+            <ol>
+                <li><b>Inventory &rsaquo; Configuration &rsaquo; Product Categories</b>: open the category of the
+                    product and set the <b>Costing Method</b> to <b>Average Cost (AVCO)</b> or
+                    <b>First In First Out (FIFO)</b>.</li>
+                <li><b>Inventory &rsaquo; Products &rsaquo; Products</b>: open the product, tab
+                    <b>General Information</b>, tick <b>Track Inventory</b> and choose <b>By Lots</b> or
+                    <b>By Unique Serial Number</b>.</li>
+                <li>Tick <b>Valuation by Lot/Serial number</b> (shown under Track Inventory) and save.</li>
+            </ol>
+            <div class="alert alert-warning" role="alert">
+                Odoo refuses to change the costing method of a product category whose products are valued by lot
+                and have stock: choose the costing method <b>before</b> receiving the products.
+            </div>
+
+            <h4 class="oe_mt32">4. Give the access to the users</h4>
+            <p>The history is shown to three kinds of users:</p>
+            <ul>
+                <li>the <b>Administrators</b> (Settings access),</li>
+                <li>the users with <b>Show Full Accounting Features</b> (accountants),</li>
+                <li>the users of the group <b>Inventory: View Product Cost History</b>.</li>
+            </ul>
+            <p>To add a user to this group:</p>
+            <ol>
+                <li><b>Settings</b>: at the bottom of the page, click <b>Activate the developer mode</b>.</li>
+                <li><b>Settings &rsaquo; Users &amp; Companies &rsaquo; Users</b>: open the user.</li>
+                <li>Tab <b>Access Rights</b>, section <b>TECHNICAL</b>: tick
+                    <b>Inventory: View Product Cost History</b> and save.</li>
+            </ol>
+            <p>
+                The same group also gives access to the product cost history of the free module.
+                The <b>Inventory &rsaquo; Reporting</b> menu is shown by Odoo to the <b>Inventory Administrators</b>
+                only: the other users of the group open the history from the product button and the lot tab
+                (see below).
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">How to use it</h2>
+        <div class="oe_span12">
+            <h4>The history of one lot or serial number</h4>
+            <p>
+                <b>Inventory &rsaquo; Products &rsaquo; Lots/Serial Numbers</b>, open a lot, tab <b>Cost History</b>.
+                The current cost of the lot is the <b>Cost</b> field of the form; the tab shows how it got there,
+                the newest change first. The tab is shown once the lot has at least one line.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_lot_form.png" alt="Lot form with its Cost History tab"/>
+            <p class="oe_mt32">
+                The <b>Reference</b>, the <b>Quantity</b> and the <b>Technical Origin</b> (administrators only) are
+                optional columns: click the <b>settings icon</b> at the right of the column titles to show them.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_line_details.png" alt="Line details"/>
+            <p>Click a line to see all its details in a read-only window.</p>
+
+            <h4 class="oe_mt32">All the lots of a product</h4>
+            <p>
+                On a product valued by lot, the <b>Lot Costs</b> button shows the number of history lines of its
+                lots and opens them. When the form has many buttons, Odoo puts it under <b>More</b>.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_product_button.png" alt="Lot Costs button"/>
+
+            <h4 class="oe_mt32">The full report</h4>
+            <p>
+                <b>Inventory &rsaquo; Reporting &rsaquo; Lot Cost History</b> lists all the changes of all the lots.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_report.png" alt="Lot Cost History report"/>
+            <p class="oe_mt32">Open the search options to:</p>
+            <ul>
+                <li><b>search</b> a lot, a product, a reference or a user,</li>
+                <li><b>filter</b> on a period (Date), the <b>Receipts</b> (receipts and customer returns) or the
+                    <b>Manual Updates</b> (manual, import and product cost updates),</li>
+                <li><b>group</b> by product, lot, source, company or date.</li>
+            </ul>
+            <img class="oe_picture oe_screenshot" src="screenshot_report_filters.png" alt="Filters and groupings"/>
+            <p class="oe_mt32">
+                Grouped by source, for example, the report shows how many changes each source made; open a group
+                to see its lines.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_report_grouped.png" alt="Report grouped by source"/>
+            <p class="oe_mt32">
+                To export the lines to Excel, select them (tick the box at the top left of the list), then
+                <b>Actions &rsaquo; Export</b>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">How to read the history</h2>
+        <div class="oe_span12">
+            <p>The history of the lot <b>LOT-A</b> above, read from the oldest line (bottom) to the newest (top):</p>
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr><th>Source</th><th>Old &rarr; New</th><th>Qty</th><th>What happened</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Receipt</td><td>0.00 &rarr; 50.00</td><td>10</td>
+                        <td>First receipt of the lot: 10 units at 50. The first line always starts from zero.</td></tr>
+                    <tr><td>Receipt</td><td>50.00 &rarr; 60.00</td><td>5</td>
+                        <td>5 units were delivered, then 5 more were received at 70: (5 &times; 50 + 5 &times; 70) / 10 = 60.
+                            The delivery itself does not change the cost of the lot, so it has no line.</td></tr>
+                    <tr><td>Customer Return</td><td>60.00 &rarr; 59.09</td><td>1</td>
+                        <td>1 unit came back at its delivery cost (50): (10 &times; 60 + 1 &times; 50) / 11 = 59.09.</td></tr>
+                    <tr><td>Receipt</td><td>59.09 &rarr; 78.57</td><td>10</td>
+                        <td>10 units received at 100: (11 &times; 59.09 + 10 &times; 100) / 21 = 78.57.</td></tr>
+                    <tr><td>Quantity Correction</td><td>78.57 &rarr; 82.69</td><td>5</td>
+                        <td>The done quantity of the same receipt was changed from 10 to 15: 5 more units at 100.</td></tr>
+                </tbody>
+            </table>
+            <ul>
+                <li><b>Old Cost</b> of a line is always the <b>New Cost</b> of the previous line of the same lot and company.</li>
+                <li><b>Quantity</b> is the quantity of the lot in the operation (in the unit of measure of the product);
+                    it is 0 when the change is not linked to a quantity (manual update, revaluation, ...).</li>
+                <li><b>Deliveries &larr; Receipt</b> (negative stock compensation): the deliveries made before the
+                    lot was received, then the receipt that revalued them.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
         <h2 class="oe_slogan">Sources of a cost change</h2>
         <div class="oe_span12">
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered table-sm" style="background:#fff;">
                 <thead>
                     <tr><th>Source</th><th>When</th><th>Reference</th></tr>
                 </thead>
@@ -89,11 +240,11 @@
                     <tr><td>Customer Return</td><td>A returned lot comes back at its delivery cost</td><td>Return</td></tr>
                     <tr><td>Quantity Correction</td><td>The done quantity of a validated receipt is changed</td><td>Receipt</td></tr>
                     <tr><td>Negative Stock Compensation</td><td>A receipt revalues a lot delivered before it was received</td><td>Deliveries &larr; Receipt</td></tr>
-                    <tr><td>Manual Update</td><td>The cost is updated on the lot</td><td>&mdash;</td></tr>
+                    <tr><td>Manual Update</td><td>The <b>Cost</b> field of the lot is changed</td><td>&mdash;</td></tr>
                     <tr><td>Import</td><td>The cost of the lot is imported</td><td>&mdash;</td></tr>
-                    <tr><td>Product Cost Update</td><td>The cost of the product is updated: Odoo writes it on all its lots</td><td>&mdash;</td></tr>
-                    <tr><td>Revaluation</td><td>The stock valuation of the lot or of the product is adjusted</td><td>Reason</td></tr>
-                    <tr><td>Valuation Settings Change</td><td>The valuation by lot is enabled on the product: its lots get the product cost</td><td>&mdash;</td></tr>
+                    <tr><td>Product Cost Update</td><td>The cost of the product is changed: Odoo writes it on all its lots</td><td>&mdash;</td></tr>
+                    <tr><td>Revaluation</td><td>The stock valuation of the lot or of the product is adjusted with the Odoo revaluation wizard</td><td>Reason of the revaluation</td></tr>
+                    <tr><td>Valuation Settings Change</td><td>The valuation by lot is enabled on a product: its lots get the product cost</td><td>&mdash;</td></tr>
                     <tr><td>Opening Cost</td><td>The cost on the install date</td><td>&mdash;</td></tr>
                     <tr><td>Other</td><td>Any other change, e.g. landed costs or a vendor bill price difference (see the technical origin)</td><td>&mdash;</td></tr>
                 </tbody>
@@ -102,20 +253,58 @@
     </div>
 </section>
 
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Good to know</h2>
+        <div class="oe_span12">
+            <ul>
+                <li><b>The history starts on the install date</b>: the past changes of the lots cannot be rebuilt,
+                    the opening cost line gives the cost of each lot on that date.</li>
+                <li><b>Landed costs and vendor bill price differences</b> change the cost of the lots through
+                    other Odoo modules (<code>stock_landed_costs</code>, <code>purchase_stock</code>): they are logged
+                    with the source <b>Other</b>, and the <b>Technical Origin</b> column shows the module that changed the cost.</li>
+                <li><b>Multi-company</b>: the cost of a lot is kept per company; each line belongs to the company in
+                    which the cost changed, and users only see the lines of their allowed companies.</li>
+                <li><b>Read-only</b>: nobody, administrators included, can create, edit or delete a line.</li>
+                <li><b>Languages</b>: English and Arabic are included.</li>
+            </ul>
+            <img class="oe_picture oe_screenshot" src="screenshot_arabic.png" alt="Arabic interface"/>
+            <div class="alert alert-warning oe_mt32" role="alert">
+                <b>Uninstalling the module deletes the whole lot cost history.</b> Export it first if you need to keep it.
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan">Configuration</h2>
+        <h2 class="oe_slogan">Frequently asked questions</h2>
         <div class="oe_span12">
-            <ol>
-                <li>Install the module: the opening cost of the lots is recorded at once.</li>
-                <li>Enable <b>Valuation by Lot/Serial Number</b> on the products that need it (Odoo 18 standard option).</li>
-                <li>The history is shown to the <b>Administrator</b>, the <b>Accountant</b> group and the
-                    <b>Inventory: View Product Cost History</b> group.</li>
-            </ol>
-            <p>
-                <b>Compatibility</b>: Odoo 18.0 Community and Enterprise. Depends on the free
-                <b>Product Cost History</b> module (<code>bk_product_cost_history</code>), installed automatically.
-            </p>
+            <p><b>I do not see the Cost History tab on a lot.</b><br/>
+                Check that the product is valued by lot (configuration step 3), that your user has the access
+                (step 4), and that the lot has at least one history line (the tab is hidden while it is empty).</p>
+            <p><b>I do not see the Lot Costs button on the product.</b><br/>
+                It is only shown on products valued by lot, and it may be under the <b>More</b> button.</p>
+            <p><b>I do not see the Lot Cost History menu.</b><br/>
+                Odoo shows the Inventory Reporting menu to the Inventory Administrators only. The other users open the
+                history from the product button or the lot tab.</p>
+            <p><b>Why does the first line of a lot start from 0?</b><br/>
+                When a lot is created, Odoo gives it the cost of the product until its receipt sets its real cost.
+                This temporary cost is not a real cost of the lot, so the history starts from zero with the real cost.</p>
+            <p><b>A delivery has no line, is it normal?</b><br/>
+                Yes: delivering a lot does not change its cost, only the received operations, the corrections and
+                the updates do.</p>
+            <p><b>Does it slow down the receipts?</b><br/>
+                No: about two database queries per serial number, less than one second more for a receipt of 1,000 serial numbers.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Support</h2>
+        <div class="oe_span12" style="text-align:center;">
+            <p>Questions, issues or suggestions: <a href="mailto:al7ajhashim@gmail.com">al7ajhashim@gmail.com</a></p>
         </div>
     </div>
 </section>

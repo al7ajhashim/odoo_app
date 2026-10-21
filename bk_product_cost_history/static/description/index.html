@@ -40,7 +40,7 @@
             <ul>
                 <li><b>Every change is logged</b>: any write of the cost is caught, whatever changed it.</li>
                 <li><b>Known source</b>: receipt, customer return, quantity correction, negative stock
-                    compensation, manual update, import, product creation.</li>
+                    compensation, delivery with lot valuation, manual update, import, product creation.</li>
                 <li><b>Reference</b> of the document that changed the cost (receipt, return, compensated deliveries).</li>
                 <li><b>One line per receipt</b>: a receipt with several lines of the same product gives
                     one line, from the cost before the receipt to the cost after it.</li>
@@ -54,7 +54,7 @@
                 <li><b>Technical origin</b> (module and method) for the administrator, so that any
                     future customization that changes the cost is identified.</li>
                 <li><b>Read-only</b> for everybody: lines cannot be created, edited or deleted.</li>
-                <li><b>Multi-company</b>: users only see the lines of their allowed companies.</li>
+                <li><b>Multi-company</b> safe, <b>Arabic</b> translation included.</li>
             </ul>
         </div>
     </div>
@@ -62,28 +62,118 @@
 
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan">Cost History tab on the product</h2>
+        <h2 class="oe_slogan">Requirements</h2>
         <div class="oe_span12">
-            <p>
-                A <b>Cost History</b> tab is added to the product form and to the product variant form.
-                On a product with several variants, the variant is shown on each line; on a variant,
-                or a product with a single variant, the column is hidden.
-            </p>
-            <img class="oe_picture oe_screenshot" src="screenshot_variant_tab.png" alt="Cost History of a variant"/>
+            <ul>
+                <li><b>Odoo 18.0</b>, Community or Enterprise, with the <b>Inventory</b> app
+                    (the module depends on <code>stock_account</code>).</li>
+            </ul>
+            <p><b>Costing methods</b></p>
+            <ul>
+                <li><b>Average Cost (AVCO)</b>: fully supported and tested, every source of the table below is recognised.</li>
+                <li><b>Standard Price</b>: the cost only changes when it is updated by a user or an import, and these
+                    changes are logged as <b>Manual Update</b> or <b>Import</b>.</li>
+                <li><b>First In First Out (FIFO)</b>: every change is logged. With FIFO, Odoo also recomputes the
+                    cost after each delivery: these lines currently show the source <b>Other</b>
+                    (a dedicated source is planned for a next version).</li>
+            </ul>
         </div>
     </div>
 </section>
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan">All the details when needed</h2>
+        <h2 class="oe_slogan">Installation and configuration</h2>
         <div class="oe_span12">
+            <h4>1. Install the module</h4>
+            <ol>
+                <li>Copy the folder <code>bk_product_cost_history</code> to your addons path and restart the Odoo
+                    server (Odoo.sh: add it to your repository).</li>
+                <li>Activate the <b>developer mode</b> (see step 2), go to <b>Apps</b>, click
+                    <b>Update Apps List</b>, search <b>Product Cost History</b> and click <b>Activate</b>.</li>
+                <li>On install, the <b>opening cost</b> of every variant is recorded at once, in every company
+                    (and the history from the sales invoices, if available: see below).</li>
+            </ol>
+
+            <h4 class="oe_mt32">2. Give the access to the users</h4>
+            <p>The history is shown to three kinds of users:</p>
+            <ul>
+                <li>the <b>Administrators</b> (Settings access),</li>
+                <li>the users with <b>Show Full Accounting Features</b> (accountants),</li>
+                <li>the users of the group <b>Inventory: View Product Cost History</b>.</li>
+            </ul>
+            <p>To add a user to this group:</p>
+            <ol>
+                <li><b>Settings</b>: at the bottom of the page, click <b>Activate the developer mode</b>.</li>
+                <li><b>Settings &rsaquo; Users &amp; Companies &rsaquo; Users</b>: open the user.</li>
+                <li>Tab <b>Access Rights</b>, section <b>TECHNICAL</b>: tick
+                    <b>Inventory: View Product Cost History</b> and save.</li>
+            </ol>
+            <p>Nothing else to configure: the history is recorded from the install date.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">How to use it</h2>
+        <div class="oe_span12">
+            <h4>The Cost History tab of a product</h4>
             <p>
-                The reference, the quantity and the technical origin are optional columns, hidden by
-                default. Each line also opens in a read-only form.
+                Open a product (<b>Inventory &rsaquo; Products &rsaquo; Products</b>, or from Sales, Purchase...),
+                tab <b>Cost History</b>: every change of its cost, the newest first. The current cost is the
+                <b>Cost</b> field of the product.
+                On a product with several variants, the variant of each line is shown.
+            </p>
+            <h4 class="oe_mt32">The history of one variant</h4>
+            <p>
+                Open the variant (<b>Variants</b> button of the product, or <b>Inventory &rsaquo; Products &rsaquo;
+                Product Variants</b> when the variants are enabled): the same tab shows the lines of this variant only.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_variant_tab.png" alt="Cost History of a variant"/>
+            <h4 class="oe_mt32">All the details when needed</h4>
+            <p>
+                The <b>Reference</b>, the <b>Quantity</b> and the <b>Technical Origin</b> (administrators only) are
+                optional columns, hidden by default: click the <b>settings icon</b> at the right of the column
+                titles to show them.
             </p>
             <img class="oe_picture oe_screenshot" src="screenshot_all_columns.png" alt="Optional columns"/>
-            <img class="oe_picture oe_screenshot oe_mt32" src="screenshot_line_details.png" alt="Line details"/>
+            <p class="oe_mt32">Click a line to see all its details in a read-only window.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_line_details.png" alt="Line details"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">How to read the history</h2>
+        <div class="oe_span12">
+            <p>The history of the variant <b>[DPX1-BLK]</b> above, read from the oldest line (bottom) to the newest (top):</p>
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr><th>Source</th><th>Old &rarr; New</th><th>Qty</th><th>What happened</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Receipt</td><td>0.00 &rarr; 900.00</td><td>10</td>
+                        <td>First receipt: 10 units at 900.</td></tr>
+                    <tr><td>Receipt</td><td>900.00 &rarr; 950.00</td><td>10</td>
+                        <td>10 units at 1,000: (10 &times; 900 + 10 &times; 1,000) / 20 = 950.</td></tr>
+                    <tr><td>Receipt</td><td>950.00 &rarr; 987.50</td><td>5</td>
+                        <td>5 units were delivered (a delivery does not change the average cost, so it has no line),
+                            then 5 units received at 1,100: (15 &times; 950 + 5 &times; 1,100) / 20 = 987.50.</td></tr>
+                    <tr><td>Manual Update</td><td>987.50 &rarr; 980.00</td><td>0</td>
+                        <td>A user changed the <b>Cost</b> field of the product.</td></tr>
+                    <tr><td>Customer Return</td><td>980.00 &rarr; 978.57</td><td>1</td>
+                        <td>1 unit came back at its delivery cost (950): (20 &times; 980 + 1 &times; 950) / 21 = 978.57.</td></tr>
+                </tbody>
+            </table>
+            <ul>
+                <li><b>Old Cost</b> of a line is always the <b>New Cost</b> of the previous line of the same variant and company.</li>
+                <li><b>Quantity</b> is the quantity of the operation (in the unit of measure of the product);
+                    it is 0 when the change is not linked to a quantity (manual update, import, ...).</li>
+                <li><b>Deliveries &larr; Receipt</b> (negative stock compensation): the deliveries made before the
+                    product was received, then the receipt that revalued them.</li>
+            </ul>
         </div>
     </div>
 </section>
@@ -97,16 +187,18 @@
                     <tr><th>Source</th><th>When</th><th>Reference</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Receipt</td><td>A receipt updates the average cost</td><td>Receipt</td></tr>
+                    <tr><td>Receipt</td><td>A receipt (or an inventory adjustment) updates the average cost</td><td>Receipt</td></tr>
                     <tr><td>Customer Return</td><td>A returned product comes back at its sale cost</td><td>Return</td></tr>
                     <tr><td>Quantity Correction</td><td>The done quantity of a validated receipt is changed</td><td>Receipt</td></tr>
                     <tr><td>Negative Stock Compensation</td><td>A receipt revalues products delivered before they were received</td><td>Deliveries &larr; Receipt</td></tr>
-                    <tr><td>Delivery (Lot Valuation)</td><td>With the valuation by lot/serial, a delivery recomputes the product cost</td><td>Delivery</td></tr>
-                    <tr><td>Manual Update</td><td>The cost is updated from the product</td><td>&mdash;</td></tr>
+                    <tr><td>Delivery (Lot Valuation)</td><td>With the valuation by lot/serial number, a delivery recomputes the product cost</td><td>Delivery</td></tr>
+                    <tr><td>Manual Update</td><td>The <b>Cost</b> field of the product is changed</td><td>&mdash;</td></tr>
                     <tr><td>Import</td><td>The cost is imported</td><td>&mdash;</td></tr>
                     <tr><td>Product Creation</td><td>A product is created with a cost</td><td>&mdash;</td></tr>
                     <tr><td>Opening Cost</td><td>The cost on the install date</td><td>&mdash;</td></tr>
-                    <tr><td>Other</td><td>Any other change (see the technical origin)</td><td>&mdash;</td></tr>
+                    <tr><td>Historical from Sales Invoices</td><td>Past costs taken from the sales invoices on install (see below)</td><td>Invoice</td></tr>
+                    <tr><td>Other</td><td>Any other change, e.g. landed costs, a vendor bill price difference, a revaluation
+                        or a FIFO delivery (see the technical origin)</td><td>&mdash;</td></tr>
                 </tbody>
             </table>
             <p>
@@ -121,15 +213,61 @@
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <h2 class="oe_slogan">Configuration</h2>
+        <h2 class="oe_slogan">Good to know</h2>
         <div class="oe_span12">
-            <ol>
-                <li>Install the module: the opening cost (and the history from the sales invoices, if
-                    available) is recorded at once.</li>
-                <li>The tab is shown to the <b>Administrator</b>, the <b>Accountant</b> group and the new
-                    <b>Inventory: View Product Cost History</b> group: add the users who need it to this group.</li>
-            </ol>
-            <p><b>Compatibility</b>: Odoo 18.0 Community and Enterprise. Depends on <code>stock_account</code>.</p>
+            <ul>
+                <li><b>The history starts on the install date</b>: the past changes cannot be rebuilt (except from
+                    the sales invoices, see above); the opening cost line gives the cost of each variant on that date.</li>
+                <li><b>Landed costs, vendor bill price differences and revaluations</b> are logged with the source
+                    <b>Other</b>; the <b>Technical Origin</b> column shows the module that changed the cost.</li>
+                <li><b>Multi-company</b>: the cost of a product is kept per company; each line belongs to the company
+                    in which the cost changed, and users only see the lines of their allowed companies.</li>
+                <li><b>Read-only</b>: nobody, administrators included, can create, edit or delete a line.</li>
+                <li><b>Languages</b>: English and Arabic are included.</li>
+            </ul>
+            <div class="alert alert-warning oe_mt32" role="alert">
+                <b>Uninstalling the module deletes the whole cost history.</b> Export it first if you need to keep it.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Frequently asked questions</h2>
+        <div class="oe_span12">
+            <p><b>I do not see the Cost History tab.</b><br/>
+                Your user needs one of the accesses of configuration step 2.</p>
+            <p><b>A delivery has no line, is it normal?</b><br/>
+                Yes with the average cost: a delivery does not change the average cost. With the valuation by
+                lot/serial number or with FIFO, Odoo recomputes the cost after a delivery, and this change is logged.</p>
+            <p><b>Why does a receipt with several lines give a single line?</b><br/>
+                The history shows the cost before and after the whole receipt, with the total received quantity.</p>
+            <p><b>Does it slow down the operations?</b><br/>
+                No: a line is only written when the cost really changes.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Need the cost of each lot or serial number?</h2>
+        <div class="oe_span12" style="text-align:center;">
+            <p>
+                With the Odoo 18 valuation by lot / serial number, each lot keeps its own cost.
+                <b>Lot Cost History</b> records the history of the cost of every lot and serial number,
+                with the same sources, references and quantities.
+            </p>
+            <p><a href="https://apps.odoo.com/apps/modules/18.0/bk_lot_cost_history">Lot Cost History on the Odoo Apps Store</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Support</h2>
+        <div class="oe_span12" style="text-align:center;">
+            <p>Questions, issues or suggestions: <a href="mailto:al7ajhashim@gmail.com">al7ajhashim@gmail.com</a></p>
         </div>
     </div>
 </section>

@@ -38,8 +38,9 @@ class LotCostHistory(models.Model):
     product_id = fields.Many2one(related='lot_id.product_id', store=True, index=True)
     product_tmpl_id = fields.Many2one(related='lot_id.product_id.product_tmpl_id', store=True, index=True)
     company_id = fields.Many2one('res.company', string='Company', required=True, readonly=True)
-    old_cost = fields.Float(string='Old Cost', digits='Product Price', readonly=True)
-    new_cost = fields.Float(string='New Cost', digits='Product Price', readonly=True)
+    # A sum of costs means nothing: the grouped lines of the report leave them empty.
+    old_cost = fields.Float(string='Old Cost', digits='Product Price', readonly=True, aggregator=False)
+    new_cost = fields.Float(string='New Cost', digits='Product Price', readonly=True, aggregator=False)
     source = fields.Selection([
         ('opening', 'Opening Cost'),
         ('receipt', 'Receipt'),
