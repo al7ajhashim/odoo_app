@@ -1,0 +1,229 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bk_lot_cost_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-21 00:00+0000\n"
+"PO-Revision-Date: 2026-10-21 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_product_product__bk_lot_cost_history_count
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_product_template__bk_lot_cost_history_count
+msgid "Bk Lot Cost History Count"
+msgstr "عدد سجل تكلفة الدفعات"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__company_id
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_stock_lot__bk_cost_history_ids
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_production_lot_form_cost_history
+msgid "Cost History"
+msgstr "سجل التكلفة"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__customer_return
+msgid "Customer Return"
+msgstr "مرتجع عميل"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__date
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: bk_lot_cost_history
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__import
+msgid "Import"
+msgstr "استيراد"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bk_lot_cost_history
+#: model:ir.actions.act_window,name:bk_lot_cost_history.action_lot_cost_history
+#: model:ir.model,name:bk_lot_cost_history.model_bk_lot_cost_history
+#: model:ir.ui.menu,name:bk_lot_cost_history.menu_lot_cost_history
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_form
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_list
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Lot Cost History"
+msgstr "سجل تكلفة الدفعات"
+
+#. module: bk_lot_cost_history
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.product_template_form_view_lot_cost_history
+msgid "Lot Costs"
+msgstr "تكاليف الدفعات"
+
+#. module: bk_lot_cost_history
+#: model:ir.model,name:bk_lot_cost_history.model_stock_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__lot_id
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Lot/Serial Number"
+msgstr "رقم الدفعة/الرقم التسلسلي"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__manual
+msgid "Manual Update"
+msgstr "تعديل يدوي"
+
+#. module: bk_lot_cost_history
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Manual Updates"
+msgstr "التعديلات اليدوية"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__negative_stock
+msgid "Negative Stock Compensation"
+msgstr "تعويض مخزون سالب"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__new_cost
+msgid "New Cost"
+msgstr "التكلفة الجديدة"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__old_cost
+msgid "Old Cost"
+msgstr "التكلفة القديمة"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__opening
+msgid "Opening Cost"
+msgstr "تكلفة افتتاحية"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: bk_lot_cost_history
+#: model:ir.model,name:bk_lot_cost_history.model_product_template
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__product_id
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Product"
+msgstr "المنتج"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__product_cost
+msgid "Product Cost Update"
+msgstr "تعديل تكلفة المنتج"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: bk_lot_cost_history
+#: model:ir.model,name:bk_lot_cost_history.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__quantity
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__quantity_correction
+msgid "Quantity Correction"
+msgstr "تصحيح كمية"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__receipt
+msgid "Receipt"
+msgstr "استلام"
+
+#. module: bk_lot_cost_history
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Receipts"
+msgstr "الاستلامات"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__reference
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__revaluation
+msgid "Revaluation"
+msgstr "إعادة تقييم"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__source
+#: model_terms:ir.ui.view,arch_db:bk_lot_cost_history.view_lot_cost_history_search
+msgid "Source"
+msgstr "المصدر"
+
+#. module: bk_lot_cost_history
+#: model:ir.model,name:bk_lot_cost_history.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__technical_origin
+msgid "Technical Origin"
+msgstr "الأصل التقني"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields,field_description:bk_lot_cost_history.field_bk_lot_cost_history__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: bk_lot_cost_history
+#: model:ir.model.fields.selection,name:bk_lot_cost_history.selection__bk_lot_cost_history__source__valuation_change
+msgid "Valuation Settings Change"
+msgstr "تغيير إعدادات التقييم"
+
+#. module: bk_lot_cost_history
+#: model:ir.model,name:bk_lot_cost_history.model_stock_valuation_layer_revaluation
+msgid "Wizard model to reavaluate a stock inventory for a product"
+msgstr ""

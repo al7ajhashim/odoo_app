@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_lot_cost_history_form" model="ir.ui.view">
+        <field name="name">bk.lot.cost.history.form</field>
+        <field name="model">bk.lot.cost.history</field>
+        <field name="arch" type="xml">
+            <form string="Lot Cost History" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="lot_id" options="{'no_open': True}"/>
+                            <field name="product_id" options="{'no_open': True}"/>
+                            <field name="old_cost"/>
+                            <field name="new_cost"/>
+                            <field name="source"/>
+                        </group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="quantity"/>
+                            <field name="technical_origin" groups="base.group_system"/>
+                            <field name="company_id" options="{'no_open': True}" groups="base.group_multi_company"/>
+                            <field name="user_id" options="{'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lot_cost_history_list" model="ir.ui.view">
+        <field name="name">bk.lot.cost.history.list</field>
+        <field name="model">bk.lot.cost.history</field>
+        <field name="arch" type="xml">
+            <list string="Lot Cost History" create="0" edit="0" delete="0">
+                <field name="date"/>
+                <field name="lot_id" options="{'no_open': True}"/>
+                <field name="product_id" options="{'no_open': True}"/>
+                <field name="old_cost"/>
+                <field name="new_cost"/>
+                <field name="source"/>
+                <field name="reference" optional="show"/>
+                <field name="quantity" optional="hide"/>
+                <field name="technical_origin" optional="hide" groups="base.group_system"/>
+                <field name="company_id" options="{'no_open': True}" groups="base.group_multi_company"/>
+                <field name="user_id" options="{'no_open': True}"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_lot_cost_history_search" model="ir.ui.view">
+        <field name="name">bk.lot.cost.history.search</field>
+        <field name="model">bk.lot.cost.history</field>
+        <field name="arch" type="xml">
+            <search string="Lot Cost History">
+                <field name="lot_id"/>
+                <field name="product_id"/>
+                <field name="reference"/>
+                <field name="user_id"/>
+                <filter string="Date" name="date" date="date"/>
+                <separator/>
+                <filter string="Receipts" name="receipts" domain="[('source', 'in', ('receipt', 'customer_return'))]"/>
+                <filter string="Manual Updates" name="manual" domain="[('source', 'in', ('manual', 'import', 'product_cost'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="group_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Lot/Serial Number" name="group_lot" context="{'group_by': 'lot_id'}"/>
+                    <filter string="Source" name="group_source" context="{'group_by': 'source'}"/>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                    <filter string="Date" name="group_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_lot_cost_history" model="ir.actions.act_window">
+        <field name="name">Lot Cost History</field>
+        <field name="res_model">bk.lot.cost.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_lot_cost_history_search"/>
+    </record>
+
+    <menuitem id="menu_lot_cost_history" action="action_lot_cost_history" parent="stock.menu_warehouse_report"
+              sequence="260"
+              groups="base.group_system,account.group_account_user,bk_product_cost_history.group_view_product_cost_history"/>
+
+    <record id="view_production_lot_form_cost_history" model="ir.ui.view">
+        <field name="name">stock.lot.form.cost.history</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Cost History" name="bk_cost_history" invisible="not bk_cost_history_ids"
+                      groups="base.group_system,account.group_account_user,bk_product_cost_history.group_view_product_cost_history">
+                    <field name="bk_cost_history_ids" readonly="1" nolabel="1">
+                        <list create="0" edit="0" delete="0">
+                            <field name="date"/>
+                            <field name="old_cost"/>
+                            <field name="new_cost"/>
+                            <field name="source"/>
+                            <field name="reference" optional="hide"/>
+                            <field name="quantity" optional="hide"/>
+                            <field name="technical_origin" optional="hide" groups="base.group_system"/>
+                            <field name="company_id" options="{'no_open': True}" groups="base.group_multi_company"/>
+                            <field name="user_id" options="{'no_open': True}"/>
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- The variant form inherits this view: the button shows there too, with the variant lines. -->
+    <record id="product_template_form_view_lot_cost_history" model="ir.ui.view">
+        <field name="name">product.template.form.lot.cost.history</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_bk_lot_cost_history" type="object" class="oe_stat_button"
+                        icon="fa-history" invisible="not lot_valuated"
+                        groups="base.group_system,account.group_account_user,bk_product_cost_history.group_view_product_cost_history">
+                    <field name="bk_lot_cost_history_count" widget="statinfo" string="Lot Costs"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

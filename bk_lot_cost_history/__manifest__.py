@@ -1,0 +1,21 @@
+{
+    'name': 'Lot Cost History',
+    'version': '18.0.1.0.0',
+    'summary': 'Log every change of the lot / serial number cost, per company, with its source.',
+    'category': 'Inventory',
+    'author': 'Al-Haj Hashim',
+    'depends': ['bk_product_cost_history'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/lot_cost_history_views.xml',
+    ],
+    'license': 'OPL-1',
+    'price': 25.0,
+    'currency': 'USD',
+    'images': ['static/description/logo.png'],
+    'post_init_hook': 'post_init_hook',
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lot_cost_history_system,lot.cost.history system,model_bk_lot_cost_history,base.group_system,1,0,0,0
+access_lot_cost_history_accountant,lot.cost.history accountant,model_bk_lot_cost_history,account.group_account_user,1,0,0,0
+access_lot_cost_history_viewer,lot.cost.history viewer,model_bk_lot_cost_history,bk_product_cost_history.group_view_product_cost_history,1,0,0,0

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.rule" id="lot_cost_history_company_rule">
+            <field name="name">Lot Cost History: allowed companies</field>
+            <field name="model_id" ref="model_bk_lot_cost_history"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>
