@@ -5,7 +5,7 @@
     'sequence': 7,
     'category': 'Accounting',
     'summary': 'Petty cash transaction management',
-    'author': 'Al-haj Hashim',
+    'author': 'Al-Haj Hashim',
     'website': 'https://www.linkedin.com/in/alhaj-hashim',
     'depends': ['account_accountant', 'analytic', 'hr', 'hr_expense'],
     'data': [

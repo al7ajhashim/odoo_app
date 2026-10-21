@@ -5,7 +5,7 @@
     'sequence': 7,
     'category': 'Accounting',
     'summary': 'Import vendor bills and customer invoices [Enterprise]',
-    'author': 'Al-haj Hashim',
+    'author': 'Al-Haj Hashim',
     'website': 'https://www.linkedin.com/in/alhaj-hashim',
     'depends': ['account', 'import_bills_invoices'],
     'data': [
