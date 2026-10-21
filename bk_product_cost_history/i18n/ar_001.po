@@ -1,0 +1,190 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bk_product_cost_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 00:00+0000\n"
+"PO-Revision-Date: 2026-10-20 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_product_product__bk_cost_history_ids
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_product_template__bk_cost_history_ids
+#: model_terms:ir.ui.view,arch_db:bk_product_cost_history.product_template_form_view_cost_history
+msgid "Cost History"
+msgstr "سجل التكلفة"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__customer_return
+msgid "Customer Return"
+msgstr "مرتجع عميل"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__date
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__lot_delivery
+msgid "Delivery (Lot Valuation)"
+msgstr "تسليم (تقييم بالدفعة)"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__invoice_history
+msgid "Historical from Sales Invoices"
+msgstr "تاريخي من فواتير المبيعات"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__import
+msgid "Import"
+msgstr "استيراد"
+
+#. module: bk_product_cost_history
+#: model:res.groups,name:bk_product_cost_history.group_view_product_cost_history
+msgid "Inventory: View Product Cost History"
+msgstr "المخزون: عرض سجل تكلفة المنتج"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__manual
+msgid "Manual Update"
+msgstr "تعديل يدوي"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__negative_stock
+msgid "Negative Stock Compensation"
+msgstr "تعويض مخزون سالب"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__new_cost
+msgid "New Cost"
+msgstr "التكلفة الجديدة"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__old_cost
+msgid "Old Cost"
+msgstr "التكلفة القديمة"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__opening
+msgid "Opening Cost"
+msgstr "تكلفة افتتاحية"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: bk_product_cost_history
+#: model:ir.model,name:bk_product_cost_history.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: bk_product_cost_history
+#: model:ir.model,name:bk_product_cost_history.model_bk_product_cost_history
+#: model_terms:ir.ui.view,arch_db:bk_product_cost_history.view_product_cost_history_form
+msgid "Product Cost History"
+msgstr "سجل تكلفة المنتج"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__creation
+msgid "Product Creation"
+msgstr "إنشاء منتج"
+
+#. module: bk_product_cost_history
+#: model:ir.model,name:bk_product_cost_history.model_product_template
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__product_id
+msgid "Product Variant"
+msgstr "موديل المنتج"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__quantity
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__quantity_correction
+msgid "Quantity Correction"
+msgstr "تصحيح كمية"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields.selection,name:bk_product_cost_history.selection__bk_product_cost_history__source__receipt
+msgid "Receipt"
+msgstr "استلام"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__reference
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__source
+msgid "Source"
+msgstr "المصدر"
+
+#. module: bk_product_cost_history
+#: model:ir.model,name:bk_product_cost_history.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__technical_origin
+msgid "Technical Origin"
+msgstr "الأصل التقني"
+
+#. module: bk_product_cost_history
+#: model:ir.model.fields,field_description:bk_product_cost_history.field_bk_product_cost_history__user_id
+msgid "User"
+msgstr "المستخدم"

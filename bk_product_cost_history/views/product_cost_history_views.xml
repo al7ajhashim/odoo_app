@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_cost_history_form" model="ir.ui.view">
+        <field name="name">bk.product.cost.history.form</field>
+        <field name="model">bk.product.cost.history</field>
+        <field name="arch" type="xml">
+            <form string="Product Cost History" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="product_id" options="{'no_open': True}"/>
+                            <field name="old_cost"/>
+                            <field name="new_cost"/>
+                            <field name="source"/>
+                        </group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="quantity"/>
+                            <field name="technical_origin" groups="base.group_system"/>
+                            <field name="company_id" options="{'no_open': True}" groups="base.group_multi_company"/>
+                            <field name="user_id" options="{'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- The variant form inherits this view, so the tab shows there too, with its own lines. -->
+    <record id="product_template_form_view_cost_history" model="ir.ui.view">
+        <field name="name">product.template.form.cost.history</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Cost History" name="bk_cost_history"
+                      groups="base.group_system,account.group_account_user,bk_product_cost_history.group_view_product_cost_history">
+                    <field name="is_product_variant" invisible="1"/>
+                    <field name="bk_cost_history_ids" readonly="1" nolabel="1">
+                        <list create="0" edit="0" delete="0">
+                            <field name="date"/>
+                            <field name="product_id" options="{'no_open': True}"
+                                   column_invisible="parent.is_product_variant or parent.product_variant_count &lt;= 1"/>
+                            <field name="old_cost"/>
+                            <field name="new_cost"/>
+                            <field name="source"/>
+                            <field name="reference" optional="hide"/>
+                            <field name="quantity" optional="hide"/>
+                            <field name="technical_origin" optional="hide" groups="base.group_system"/>
+                            <field name="company_id" options="{'no_open': True}" groups="base.group_multi_company"/>
+                            <field name="user_id" options="{'no_open': True}"/>
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

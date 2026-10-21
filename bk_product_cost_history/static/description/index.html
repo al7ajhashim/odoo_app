@@ -1,0 +1,135 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#714B67;">Product Cost History</h2>
+        <h3 class="oe_slogan">Know when, why and by whom the cost of each product variant changed</h3>
+        <div class="oe_span12" style="text-align:center;">
+            <img class="oe_picture oe_screenshot" src="screenshot_template_tab.png" alt="Cost History tab"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Why this module?</h2>
+        <div class="oe_span12">
+            <p class="oe_mt32">
+                With the average cost (AVCO) method, the product cost changes on every receipt,
+                customer return, negative stock compensation or manual update, but Odoo 18 keeps
+                <b>no history</b> of these changes: the cost of a product on a past date, and the
+                operation that changed it, can no longer be found.
+            </p>
+            <p>
+                <b>Product Cost History</b> records every change of the cost, at the moment it happens,
+                for each <b>product variant</b> and each <b>company</b>, with its source and its reference.
+            </p>
+            <div class="alert alert-info oe_mt32" role="alert">
+                <b>The base for a "cost at a date" report.</b>
+                Because every change is recorded with its date, the cost of any product on any past day is
+                simply the last recorded cost before the end of that day. This history is the reliable
+                source for any report that needs the product cost on a given date: stock valuation at a
+                date, cost of past sales, margin analysis or stock ageing with cost.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Main features</h2>
+        <div class="oe_span6">
+            <ul>
+                <li><b>Every change is logged</b>: any write of the cost is caught, whatever changed it.</li>
+                <li><b>Known source</b>: receipt, customer return, quantity correction, negative stock
+                    compensation, manual update, import, product creation.</li>
+                <li><b>Reference</b> of the document that changed the cost (receipt, return, compensated deliveries).</li>
+                <li><b>One line per receipt</b>: a receipt with several lines of the same product gives
+                    one line, from the cost before the receipt to the cost after it.</li>
+                <li><b>Only real changes</b>: nothing is logged when the cost does not change.</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <ul>
+                <li><b>Per variant and company</b>: each variant keeps its own history in each company.</li>
+                <li><b>Opening cost</b> recorded on install for every variant in every company.</li>
+                <li><b>Technical origin</b> (module and method) for the administrator, so that any
+                    future customization that changes the cost is identified.</li>
+                <li><b>Read-only</b> for everybody: lines cannot be created, edited or deleted.</li>
+                <li><b>Multi-company</b>: users only see the lines of their allowed companies.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Cost History tab on the product</h2>
+        <div class="oe_span12">
+            <p>
+                A <b>Cost History</b> tab is added to the product form and to the product variant form.
+                On a product with several variants, the variant is shown on each line; on a variant,
+                or a product with a single variant, the column is hidden.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_variant_tab.png" alt="Cost History of a variant"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">All the details when needed</h2>
+        <div class="oe_span12">
+            <p>
+                The reference, the quantity and the technical origin are optional columns, hidden by
+                default. Each line also opens in a read-only form.
+            </p>
+            <img class="oe_picture oe_screenshot" src="screenshot_all_columns.png" alt="Optional columns"/>
+            <img class="oe_picture oe_screenshot oe_mt32" src="screenshot_line_details.png" alt="Line details"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Sources of a cost change</h2>
+        <div class="oe_span12">
+            <table class="table table-bordered table-sm" style="background:#fff;">
+                <thead>
+                    <tr><th>Source</th><th>When</th><th>Reference</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Receipt</td><td>A receipt updates the average cost</td><td>Receipt</td></tr>
+                    <tr><td>Customer Return</td><td>A returned product comes back at its sale cost</td><td>Return</td></tr>
+                    <tr><td>Quantity Correction</td><td>The done quantity of a validated receipt is changed</td><td>Receipt</td></tr>
+                    <tr><td>Negative Stock Compensation</td><td>A receipt revalues products delivered before they were received</td><td>Deliveries &larr; Receipt</td></tr>
+                    <tr><td>Delivery (Lot Valuation)</td><td>With the valuation by lot/serial, a delivery recomputes the product cost</td><td>Delivery</td></tr>
+                    <tr><td>Manual Update</td><td>The cost is updated from the product</td><td>&mdash;</td></tr>
+                    <tr><td>Import</td><td>The cost is imported</td><td>&mdash;</td></tr>
+                    <tr><td>Product Creation</td><td>A product is created with a cost</td><td>&mdash;</td></tr>
+                    <tr><td>Opening Cost</td><td>The cost on the install date</td><td>&mdash;</td></tr>
+                    <tr><td>Other</td><td>Any other change (see the technical origin)</td><td>&mdash;</td></tr>
+                </tbody>
+            </table>
+            <p>
+                <b>Historical from Sales Invoices</b>: when the sales invoice lines carry the product
+                cost in a <code>product_cost</code> field (a common customization), the install also
+                builds the past history from the posted sales invoices. Without that field, only the
+                opening cost is recorded.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Configuration</h2>
+        <div class="oe_span12">
+            <ol>
+                <li>Install the module: the opening cost (and the history from the sales invoices, if
+                    available) is recorded at once.</li>
+                <li>The tab is shown to the <b>Administrator</b>, the <b>Accountant</b> group and the new
+                    <b>Inventory: View Product Cost History</b> group: add the users who need it to this group.</li>
+            </ol>
+            <p><b>Compatibility</b>: Odoo 18.0 Community and Enterprise. Depends on <code>stock_account</code>.</p>
+        </div>
+    </div>
+</section>
