@@ -11,7 +11,7 @@
         'views/lot_cost_history_views.xml',
     ],
     'license': 'OPL-1',
-    'price': 25.0,
+    'price': 12.50,
     'currency': 'USD',
     'images': ['static/description/logo.png'],
     'post_init_hook': 'post_init_hook',
